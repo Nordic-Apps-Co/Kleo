@@ -18,10 +18,6 @@
   {% liquid
     assign autoplay = false
     assign show_arrows = false
-    if section.blocks.size > 1
-      assign autoplay = true
-      assign show_arrows = true
-    endif
   %}
 
   <announcement-bar-component
@@ -57,25 +53,17 @@
   }
 
   .announcement-bar__slides {
-    display: grid;
-    grid: [stack] auto / [stack] auto;
-    width: calc(100% - var(--button-size) * 2);
-    max-width: 680px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: none;
     margin-inline: auto;
   }
 
-  .announcement-bar__slides > * {
-    grid-area: stack;
-  }
-
   .announcement-bar__slide {
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     content-visibility: visible;
-
-    &[aria-hidden='true'] {
-      opacity: 0;
-      visibility: hidden;
-    }
   }
 
   .announcement-bar__slider slideshow-arrows {
