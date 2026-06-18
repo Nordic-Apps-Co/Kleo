@@ -42,6 +42,7 @@ The goal is always to ship great work — not to follow a rulebook.
 
 ## Tools — what Claude Code has available
 - **Shopify MCP** — real-time Shopify docs, schema, and store operations
+- **Shopify Connector (MCP)** — connected to get-kleo.myshopify.com via claude.ai. 25 tools including create-product, update-product, list-orders, get-order, list-customers, search-products, get-shop-info and more.
 - **Shopify AI Toolkit** — official Shopify skills for theme, Liquid, CLI, and storefront
 - Always use Shopify MCP to validate Liquid, API calls, and CLI commands before committing
 - Always use the relevant AI Toolkit skill before writing theme code
@@ -76,9 +77,10 @@ Every prompt must follow this structure, in English, in a code block:
 - Mobile-first — every change must look correct on mobile before desktop
 
 ## Visuals — Higgsfield
-- All product images and video are produced in Higgsfield
+- All product images, lifestyle images, ads and video content are produced exclusively in Higgsfield
 - When a prompt involves new visuals, note what needs to be created in Higgsfield
-- Never use placeholder images from external URLs — flag missing assets instead
+- Never generate or source images from other tools or external URLs
+- Flag missing visuals as "Needs Higgsfield asset" in code comments
 
 ## Code conventions
 - Liquid: follow Shopify Liquid best practices — filters, proper scoping, no logic-heavy templates
