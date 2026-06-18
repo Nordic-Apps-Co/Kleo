@@ -17,7 +17,29 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "✉ Brug for hjælp?",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "announcement_Kl2Rt7": {
+          "type": "_announcement",
+          "settings": {
+            "text": "60 dages fuld returret | Hurtig levering",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "announcement_Dk9Mn4": {
+          "type": "_announcement",
+          "settings": {
+            "text": "🇩🇰 Dansk virksomhed",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",
@@ -27,7 +49,9 @@
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "announcement_BxgCk9",
+        "announcement_Kl2Rt7",
+        "announcement_Dk9Mn4"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
