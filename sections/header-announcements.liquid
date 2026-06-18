@@ -1,208 +1,81 @@
-
-
-{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
-
-<div class="section-background color-custom-{{ section.id }}"></div>
-<aside
-  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-custom-{{ section.id }}"
-  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;{% if section.settings.divider_color != blank %} --color-border: {{ section.settings.divider_color }};{% endif %}"
->
-  {% liquid
-    assign autoplay = false
-    assign show_arrows = false
-  %}
-
-  <announcement-bar-component
-    class="announcement-bar__slider"
-    {% if autoplay == true %}
-      autoplay="{{ section.settings.speed }}" aria-live="polite"
+<div class="kleo-announcement-bar">
+  <div class="kleo-announcement-bar__inner">
+    {% if section.settings.message_1 != blank %}
+      <span class="kleo-announcement-bar__item">{{ section.settings.message_1 }}</span>
     {% endif %}
-  >
-    {% if show_arrows %}
-      {% render 'slideshow-arrows', icon_style: 'chevron' %}
+    {% if section.settings.message_2 != blank %}
+      <span class="kleo-announcement-bar__item">{{ section.settings.message_2 }}</span>
     {% endif %}
-
-    <div class="announcement-bar__slides">
-      {% content_for 'blocks' %}
-    </div>
-  </announcement-bar-component>
-</aside>
+    {% if section.settings.message_3 != blank %}
+      <span class="kleo-announcement-bar__item">{{ section.settings.message_3 }}</span>
+    {% endif %}
+  </div>
+</div>
 
 {% stylesheet %}
-  .announcement-bar {
-    border-block-end: var(--border-bottom-width) solid var(--color-border);
+  .kleo-announcement-bar {
+    background-color: #1b2a4a;
+    color: #ffffff;
+    border-block-end: 1px solid #2a3a5a;
   }
 
-  .announcement-bar__slider {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-
-    @media screen and (max-width: 749px) {
-      grid-column: 1 / -1;
-    }
-  }
-
-  .announcement-bar__slides {
+  .kleo-announcement-bar__inner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     width: 100%;
-    max-width: none;
-    margin-inline: auto;
+    padding: 10px 24px;
   }
 
-  .announcement-bar__slide {
-    content-visibility: visible;
+  .kleo-announcement-bar__item {
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
-  .announcement-bar__slider slideshow-arrows {
-    padding: 0;
-    mix-blend-mode: normal;
-  }
-
-  .announcement-bar__slider slideshow-arrows .slideshow-control {
-    color: var(--color-foreground);
-  }
-
-  .announcement-bar__slider .slideshow-control {
-    display: flex;
-    padding: 0;
-    width: var(--button-size);
-    height: var(--button-size);
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    animation: none;
-
-    @media screen and (min-width: 750px) {
-      --slideshow-control-offset: calc((var(--button-size) - var(--icon-size-xs)) / 2);
-
-      .section--page-width &.slideshow-control--previous {
-        transform: translateX(var(--slideshow-control-offset));
-      }
+  @media screen and (max-width: 749px) {
+    .kleo-announcement-bar__inner {
+      gap: 0.5rem;
+      padding: 8px 12px;
     }
-  }
 
-  .announcement-bar__slider .slideshow-control .svg-wrapper {
-    width: var(--icon-size-xs);
-    height: var(--icon-size-xs);
-  }
-
-  .announcement-bar__slide {
-    place-content: center;
-  }
-
-  .announcement-bar__text:first-child {
-    margin: 0;
-  }
-
-  .announcement-bar__link {
-    position: absolute;
-    inset: 0;
+    .kleo-announcement-bar__item {
+      font-size: 11px;
+    }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "t:names.announcement_bar",
-  "blocks": [
+  "name": "Announcement bar",
+  "settings": [
     {
-      "type": "_announcement"
+      "type": "text",
+      "id": "message_1",
+      "label": "Message 1",
+      "default": "✉ Brug for hjælp?"
+    },
+    {
+      "type": "text",
+      "id": "message_2",
+      "label": "Message 2",
+      "default": "60 dages fuld returret | Hurtig levering"
+    },
+    {
+      "type": "text",
+      "id": "message_3",
+      "label": "Message 3",
+      "default": "🇩🇰 Dansk virksomhed"
     }
   ],
   "enabled_on": {
     "groups": ["header"]
   },
-  "settings": [
-    {
-      "type": "range",
-      "id": "speed",
-      "label": "t:settings.scroll_speed",
-      "min": 2,
-      "max": 10,
-      "default": 5,
-      "unit": "sec"
-    },
-    {
-      "type": "header",
-      "content": "t:content.appearance"
-    },
-    {
-      "type": "select",
-      "id": "section_width",
-      "label": "t:settings.section_width",
-      "options": [
-        {
-          "value": "page-width",
-          "label": "t:options.page"
-        },
-        {
-          "value": "full-width",
-          "label": "t:options.full"
-        }
-      ],
-      "default": "page-width"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "t:settings.background_color",
-      "placeholder": "t:settings.default"
-    },
-    {
-      "type": "range",
-      "id": "divider_width",
-      "label": "t:settings.divider_thickness",
-      "min": 0,
-      "max": 5,
-      "step": 0.5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "color",
-      "id": "divider_color",
-      "label": "t:settings.divider_color",
-      "placeholder": "t:settings.default",
-      "visible_if": "{{ section.settings.divider_width > 0 }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.padding"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start",
-      "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "padding-block-end",
-      "label": "t:settings.bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    }
-  ],
   "presets": [
     {
-      "name": "t:names.announcement_bar",
-      "blocks": {
-        "announcement_1": {
-          "type": "_announcement"
-        }
-      },
-      "block_order": ["announcement_1"]
+      "name": "Announcement bar"
     }
   ]
 }
