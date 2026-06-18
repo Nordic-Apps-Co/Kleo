@@ -1,14 +1,12 @@
 <div class="kleo-announcement-bar">
   <div class="kleo-announcement-bar__inner">
-    {% if section.settings.message_1 != blank %}
-      <span class="kleo-announcement-bar__item">{{ section.settings.message_1 }}</span>
-    {% endif %}
-    {% if section.settings.message_2 != blank %}
-      <span class="kleo-announcement-bar__item">{{ section.settings.message_2 }}</span>
-    {% endif %}
-    {% if section.settings.message_3 != blank %}
-      <span class="kleo-announcement-bar__item">{{ section.settings.message_3 }}</span>
-    {% endif %}
+    <span class="kleo-announcement-bar__item">
+      <img src="{{ 'icon-envelope.svg' | asset_url }}" width="14" height="14" style="vertical-align:middle;margin-right:6px" alt="">Brug for hjælp?
+    </span>
+    <span class="kleo-announcement-bar__item">60 dages fuld returret | Hurtig levering</span>
+    <span class="kleo-announcement-bar__item">
+      <img src="{{ 'denmark-flag.svg' | asset_url }}" width="16" height="16" style="vertical-align:middle;margin-right:6px" alt="Dansk flag">Dansk virksomhed
+    </span>
   </div>
 </div>
 
@@ -54,26 +52,7 @@
 {% schema %}
 {
   "name": "Announcement bar",
-  "settings": [
-    {
-      "type": "text",
-      "id": "message_1",
-      "label": "Message 1",
-      "default": "✉ Brug for hjælp?"
-    },
-    {
-      "type": "text",
-      "id": "message_2",
-      "label": "Message 2",
-      "default": "60 dages fuld returret | Hurtig levering"
-    },
-    {
-      "type": "text",
-      "id": "message_3",
-      "label": "Message 3",
-      "default": "🇩🇰 Dansk virksomhed"
-    }
-  ],
+  "settings": [],
   "enabled_on": {
     "groups": ["header"]
   },
