@@ -26,7 +26,10 @@
     align-items: center;
     gap: 1rem;
     width: 100%;
-    padding: 10px 24px;
+    max-width: var(--page-width);
+    margin-inline: auto;
+    padding-block: 10px;
+    padding-inline: var(--page-margin);
   }
 
   .kleo-announcement-bar__item {
@@ -38,7 +41,7 @@
   @media screen and (max-width: 749px) {
     .kleo-announcement-bar__inner {
       gap: 0.5rem;
-      padding: 8px 12px;
+      padding-block: 8px;
     }
 
     .kleo-announcement-bar__item {
