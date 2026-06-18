@@ -1,13 +1,5 @@
 
 
-{% if section.blocks.size > 1 %}
-  <script
-    src="{{ 'announcement-bar.js' | asset_url }}"
-    type="module"
-    fetchpriority="low"
-  ></script>
-{% endif %}
-
 {% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
 
 <div class="section-background color-custom-{{ section.id }}"></div>
